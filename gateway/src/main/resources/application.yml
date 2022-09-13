@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: gateway-service
+
+server:
+  port: 8000
+
+zuul:
+  prefix: /api
+  routes:
+    users-sales:
+      path: /sales/users/**
+      url: http://localhost:8080/users
+    purchases-sales:
+      path: /sales/purchases/**
+      url: http://localhost:8080/purhcases
+    products-sales:
+      path: /sales/products/**
+      url: http://localhost:8080/products
+    users-bank:
+      path: /bank/users/**
+      url: http://localhost:8081/users
+    accounts-bank:
+      path: /bank/accounts/**
+      url: http://localhost:8081/accounts
+    users-delivery:
+      path: /delivery/users/**
+      url: http://localhost:8082/users
+    delivery:
+      path: /delivery/**
+      url: http://localhost:8082/deliveries
+
+endpoints:
+  trace:
+    sensitive: false
+
+ribbon:
+  eureka:
+    enabled: false
